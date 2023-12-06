@@ -6,5 +6,5 @@ data class Article(
     var description: String,
     var prix: Double,
     var urlImage: String,
-    var dateSortie: Date
+    var dateSortie: Date?
 )
