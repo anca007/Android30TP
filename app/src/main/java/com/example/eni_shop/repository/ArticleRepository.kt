@@ -17,6 +17,10 @@ class ArticleRepository {
         return articleDAO?.addNewOne(article)
     }
 
+    fun getAllArticles() : List<Article>?{
+        return articleDAO?.selectAll()
+    }
+
 
 
 
