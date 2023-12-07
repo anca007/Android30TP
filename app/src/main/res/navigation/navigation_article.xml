@@ -9,7 +9,11 @@
         android:id="@+id/detailArticleFragment"
         android:name="com.example.eni_shop.DetailArticleFragment"
         android:label="fragment_detail_article"
-        tools:layout="@layout/fragment_detail_article" />
+        tools:layout="@layout/fragment_detail_article" >
+        <argument
+            android:name="article"
+            app:argType="com.example.eni_shop.bo.Article" />
+    </fragment>
     <fragment
         android:id="@+id/listeArticleFragment"
         android:name="com.example.eni_shop.ListeArticleFragment"

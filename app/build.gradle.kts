@@ -1,6 +1,10 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    //passage de paramètre entre fragment
+    id("androidx.navigation.safeargs")
+    //parcelable
+    id("kotlin-parcelize")
 }
 
 android {

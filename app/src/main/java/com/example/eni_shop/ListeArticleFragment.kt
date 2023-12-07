@@ -34,7 +34,12 @@ class ListeArticleFragment : Fragment() {
         }
 
         binding.btnToDetail.setOnClickListener {
-            Navigation.findNavController(view).navigate(R.id.actionListToDetailArticle)
+            var article = articles?.random()
+            if(article != null){
+                val direction = ListeArticleFragmentDirections.actionListToDetailArticle(article)
+                Navigation.findNavController(view).navigate(direction)
+            }
+
         }
 
     }
