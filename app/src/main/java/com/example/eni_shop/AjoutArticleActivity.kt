@@ -1,22 +1,21 @@
 package com.example.eni_shop
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import com.example.eni_shop.bo.Article
-import com.example.eni_shop.databinding.ActivityMainBinding
+import com.example.eni_shop.databinding.ActivityAjoutArticleBinding
 import com.example.eni_shop.repository.ArticleRepository
 import com.google.android.material.snackbar.Snackbar
-import java.util.Date
 
 private const val TAG = "MainActivity"
 
-class MainActivity : AppCompatActivity() {
+class AjoutArticleActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityMainBinding
+    lateinit var binding: ActivityAjoutArticleBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityAjoutArticleBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.article = Article(0, "", "", 0.0, "", null)
@@ -27,11 +26,16 @@ class MainActivity : AppCompatActivity() {
 
             val article = binding.article
 
-            Snackbar.make(
-                it,
-                "Vous venez de créer " + article?.titre + " pour un montant de " + article?.prix + " €",
-                Snackbar.LENGTH_SHORT
-            ).show()
+            ArticleRepository.addArticle(article!!)
+
+            Intent(this, HomeActivity::class.java).also {
+                it.putExtra("title", article.titre)
+                it.putExtra("price", article.prix.toString())
+                startActivity(it)
+
+            }
+
+
         }
 
 

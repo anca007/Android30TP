@@ -24,7 +24,7 @@ class ListeArticleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val articles = ArticleRepository().getAllArticles()
+        val articles = ArticleRepository.getAllArticles()
         var titles = ""
 
         articles?.forEach {
