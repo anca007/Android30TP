@@ -1,10 +1,11 @@
-package com.example.eni_shop
+package com.example.eni_shop.ui.articlelist
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.eni_shop.databinding.FragmentListeArticleBinding
 import com.example.eni_shop.repository.ArticleRepository
@@ -12,6 +13,7 @@ import com.example.eni_shop.repository.ArticleRepository
 class ListeArticleFragment : Fragment() {
 
     lateinit var binding: FragmentListeArticleBinding
+    lateinit var vm: ListeArticleViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -24,25 +26,30 @@ class ListeArticleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val articles = ArticleRepository.getAllArticles()
-        var titles = ""
+        vm = ViewModelProvider(this)[ListeArticleViewModel::class.java]
 
-        articles?.forEach {
-            titles += it.titre + "\n"
-        }.also {
-            binding.tvArticles.text = titles
-        }
+        vm.getArticleList().observe(viewLifecycleOwner) { articles ->
+            var titles = ""
 
-        binding.btnToDetail.setOnClickListener {
-            var article = articles?.random()
-            if(article != null){
-                val direction = ListeArticleFragmentDirections.actionListToDetailArticle(article)
-                Navigation.findNavController(view).navigate(direction)
+            articles?.forEach {
+                titles += it.titre + "\n"
+            }.also {
+                binding.tvArticles.text = titles
             }
 
         }
 
+        binding.btnToDetail.setOnClickListener {
+
+            val direction =
+                ListeArticleFragmentDirections.actionListToDetailArticle(
+                    vm.getRandomArticle()
+                )
+            Navigation.findNavController(view).navigate(direction)
+        }
+
     }
 
-
 }
+
+

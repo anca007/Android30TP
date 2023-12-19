@@ -22,7 +22,7 @@
         </activity>
 
         <activity
-            android:name=".AjoutArticleActivity"
+            android:name=".ui.articleadd.AjoutArticleActivity"
             android:exported="false">
         </activity>
     </application>

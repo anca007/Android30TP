@@ -6,15 +6,21 @@ import java.util.Date
 object DateConverter {
 
     @JvmStatic
-    fun dateToSimpleString(date: Date?) : String{
+    fun dateToSimpleString(date: Date?): String {
 
-        if(date != null){
-            val format =  SimpleDateFormat("dd/MM/yyyy")
+        if (date != null) {
+            val format = SimpleDateFormat("dd/MM/yyyy")
             return format.format(date)
-        }else{
+        } else {
             return ""
         }
 
+    }
 
+    @JvmStatic
+    fun stringToSimpleDate(text: String): Date {
+
+        val dateFormat = SimpleDateFormat("dd/MM/yyyy")
+        return dateFormat.parse(text)
     }
 }

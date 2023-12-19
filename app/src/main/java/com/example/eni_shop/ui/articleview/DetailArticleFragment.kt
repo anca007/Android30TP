@@ -1,4 +1,4 @@
-package com.example.eni_shop
+package com.example.eni_shop.ui.articleview
 
 import android.content.Intent
 import android.net.Uri
@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.navArgs
 import com.example.eni_shop.databinding.FragmentDetailArticleBinding
 

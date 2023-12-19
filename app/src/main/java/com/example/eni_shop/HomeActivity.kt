@@ -3,6 +3,7 @@ package com.example.eni_shop
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.eni_shop.ui.articleadd.AjoutArticleActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 
