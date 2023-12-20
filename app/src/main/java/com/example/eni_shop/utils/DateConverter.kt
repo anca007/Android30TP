@@ -1,5 +1,6 @@
 package com.example.eni_shop.utils
 
+import androidx.room.TypeConverter
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -14,7 +15,6 @@ object DateConverter {
         } else {
             return ""
         }
-
     }
 
     @JvmStatic
@@ -22,5 +22,18 @@ object DateConverter {
 
         val dateFormat = SimpleDateFormat("dd/MM/yyyy")
         return dateFormat.parse(text)
+    }
+
+
+    @TypeConverter
+    fun toTimestamp(date: Date): Long? {
+        return date.time
+    }
+
+    @TypeConverter
+    fun toDate(timestamp: Long): Date? {
+
+        return Date(timestamp)
+        //return timestamp.let { Date(it) }
     }
 }

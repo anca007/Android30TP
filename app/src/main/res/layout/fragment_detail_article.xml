@@ -70,5 +70,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_article_title" />
 
+        <CheckBox
+            android:id="@+id/checkFav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Favori ?"
+            app:layout_constraintBottom_toTopOf="@+id/tv_article_price"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_article_description" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -36,7 +36,9 @@ class ArticleDaoMemoryImpl : ArticleDAO {
        return articlesInMemory
     }
 
-
+    override fun deleteArticle(article: Article) {
+        TODO("Not yet implemented")
+    }
 
 
 }
