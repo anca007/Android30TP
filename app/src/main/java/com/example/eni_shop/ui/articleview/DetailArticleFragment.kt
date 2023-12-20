@@ -35,6 +35,11 @@ class DetailArticleFragment : Fragment() {
         val article = args.article
         binding.article = article
 
+        binding.vm = vm
+        binding.lifecycleOwner = this
+
+        vm.checkArticleFav(article.id)
+
         binding.checkFav.setOnClickListener {
 
             if (binding.checkFav.isChecked) {

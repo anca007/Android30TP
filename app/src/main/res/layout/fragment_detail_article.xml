@@ -8,6 +8,9 @@
         <variable
             name="article"
             type="com.example.eni_shop.bo.Article" />
+        <variable
+            name="vm"
+            type="com.example.eni_shop.ui.articleview.DetailArticleViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -75,6 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Favori ?"
+            android:checked="@{vm.fav}"
             app:layout_constraintBottom_toTopOf="@+id/tv_article_price"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
