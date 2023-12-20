@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.eni_shop.adapter.ArticleAdapter
 import com.example.eni_shop.bo.Article
 import com.example.eni_shop.databinding.FragmentListeArticleBinding
 import com.example.eni_shop.repository.ArticleRepository
@@ -18,8 +20,7 @@ class ListeArticleFragment : Fragment() {
     val vm: ListeArticleViewModel by viewModels { ListeArticleViewModel.Factory }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentListeArticleBinding.inflate(layoutInflater, container, false)
@@ -28,8 +29,6 @@ class ListeArticleFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
 
         vm.getArticleList().observe(viewLifecycleOwner) { articles ->
             displayArticleList(articles)
@@ -41,27 +40,16 @@ class ListeArticleFragment : Fragment() {
             }
         }
 
-        binding.btnToDetail.setOnClickListener {
-
-            val direction =
-                ListeArticleFragmentDirections.actionListToDetailArticle(
-                    vm.getRandomArticle()
-                )
-            Navigation.findNavController(view).navigate(direction)
-        }
-
     }
 
     private fun displayArticleList(articles: List<Article>) {
-        var titles = ""
 
-        articles?.forEach {
-            titles += it.titre + "\n"
-        }.also {
-            binding.tvArticles.text = titles
+        val recycler = binding.recycler
+        recycler.adapter = ArticleAdapter(articles) {
+            val direction = ListeArticleFragmentDirections.actionListToDetailArticle(it)
+            Navigation.findNavController(requireView()).navigate(direction)
         }
-
-
+        recycler.layoutManager = LinearLayoutManager(context)
     }
 
 }
