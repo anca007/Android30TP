@@ -1,9 +1,12 @@
 package com.example.eni_shop.ui.articleadd
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.eni_shop.bo.Article
 import com.example.eni_shop.repository.ArticleRepository
+import com.example.eni_shop.services.ArticleService
 import com.example.eni_shop.utils.DateConverter
+import kotlinx.coroutines.launch
 
 class AjoutArticleViewModel : ViewModel() {
 
@@ -21,7 +24,9 @@ class AjoutArticleViewModel : ViewModel() {
             "",
             DateConverter.stringToSimpleDate(date)
         )
-        ArticleRepository.addArticle(article)
+        viewModelScope.launch {
+            ArticleService.ArticleAPI.retrofitService.addNewArticle(article)
+        }
 
     }
 

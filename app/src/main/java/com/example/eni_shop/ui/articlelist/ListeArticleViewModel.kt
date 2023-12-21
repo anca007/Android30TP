@@ -9,6 +9,7 @@ import com.example.eni_shop.bo.Article
 import com.example.eni_shop.dao.ArticleDAO
 import com.example.eni_shop.db.ArticleDatabase
 import com.example.eni_shop.repository.ArticleRepository
+import com.example.eni_shop.services.ArticleService
 import com.example.eni_shop.ui.articleview.DetailArticleViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -18,7 +19,9 @@ class ListeArticleViewModel(private val articleDAO: ArticleDAO) : ViewModel() {
     var articles = MutableLiveData<List<Article>>()
 
     fun getArticleList(): MutableLiveData<List<Article>> {
-        articles.value = ArticleRepository.getAllArticles()
+        viewModelScope.launch {
+            articles.value = ArticleService.ArticleAPI.retrofitService.getAllArticles()
+        }
         return articles
     }
 
@@ -27,10 +30,6 @@ class ListeArticleViewModel(private val articleDAO: ArticleDAO) : ViewModel() {
             articles.postValue(articleDAO.selectAll())
         }
         return articles
-    }
-
-    fun getRandomArticle(): Article {
-        return articles.value?.random()!!
     }
 
     companion object {

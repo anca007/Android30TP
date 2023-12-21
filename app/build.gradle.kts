@@ -46,6 +46,16 @@ android {
 
 dependencies {
 
+    //Picasso
+    implementation("com.squareup.picasso:picasso:2.8")
+
+    //moshi
+    implementation("com.squareup.moshi:moshi:1.14.0")
+    implementation("com.squareup.moshi:moshi-kotlin:1.14.0")
+    //retrofit
+    implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
+
+
     val lifecycle_version = "2.4.0"
     // ViewModelScope -> coroutine
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
@@ -81,8 +91,6 @@ dependencies {
 
     // optional - Paging 3 Integration
     implementation("androidx.room:room-paging:$room_version")
-
-
 
 
     val nav_version = "2.5.3"

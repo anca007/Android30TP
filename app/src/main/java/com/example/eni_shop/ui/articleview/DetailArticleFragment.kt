@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.eni_shop.databinding.FragmentDetailArticleBinding
+import com.squareup.picasso.Picasso
 
 
 class DetailArticleFragment : Fragment() {
@@ -34,6 +35,8 @@ class DetailArticleFragment : Fragment() {
 
         val article = args.article
         binding.article = article
+
+        Picasso.get().load(article.urlImage).into(binding.imageView);
 
         binding.vm = vm
         binding.lifecycleOwner = this

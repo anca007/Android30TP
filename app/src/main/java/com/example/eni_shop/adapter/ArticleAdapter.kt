@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.eni_shop.bo.Article
 import com.example.eni_shop.databinding.TemplateArticleLineBinding
 
-class ArticleAdapter(val articleList: List<Article>, val listener: (article: Article) -> Unit) :
+class ArticleAdapter(var articleList: List<Article>, val listener: (article: Article) -> Unit) :
     Adapter<ArticleAdapter.ArticleVH>() {
     class ArticleVH(val binding: TemplateArticleLineBinding) : ViewHolder(binding.root)
 
@@ -30,8 +30,6 @@ class ArticleAdapter(val articleList: List<Article>, val listener: (article: Art
         holder.itemView.setOnClickListener {
             listener.invoke(articleList[position])
         }
-
     }
-
 
 }
